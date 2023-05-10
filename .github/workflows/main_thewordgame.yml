@@ -6,6 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - TheWordGame
 on:
   push:
     branches:
+      - Assignment-3
       - main
    path: 
     - Wordle.Api/**
