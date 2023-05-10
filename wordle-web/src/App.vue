@@ -2,13 +2,18 @@
   <v-app>
     <v-app-bar :elevation="3">
       <template v-slot>
-        <v-app-bar-title><RouterLink to="/">Wordle</RouterLink></v-app-bar-title>
+        <v-app-bar-title>
+          <RouterLink to="/">
+            <v-icon icon="mdi-alpha-w-box" color="orange-darken-3"></v-icon>
+            Wordle
+          </RouterLink>
+        </v-app-bar-title>
         <v-spacer></v-spacer>
         <v-btn icon="mdi-brightness-7" @click="switchTheme"></v-btn>
 
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
+            <v-btn icon="mdi-hamburger" v-bind="props"></v-btn>
           </template>
 
           <v-list>
