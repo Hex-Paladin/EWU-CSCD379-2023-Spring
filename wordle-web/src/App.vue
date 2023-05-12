@@ -9,7 +9,10 @@
           </RouterLink>
         </v-app-bar-title>
         <v-spacer></v-spacer>
+
         <v-btn icon="mdi-brightness-7" @click="switchTheme"></v-btn>
+
+        <ActiveUser></ActiveUser>
 
         <v-menu>
           <template v-slot:activator="{ props }">
@@ -20,10 +23,14 @@
             <v-list-item>
               <v-list-item-title><RouterLink to="/about">About</RouterLink></v-list-item-title>
             </v-list-item>
+            <v-list-item>
+              <v-list-item-title></v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
       </template>
     </v-app-bar>
+
     <v-main>
       <RouterView />
     </v-main>
@@ -35,10 +42,16 @@ import { useTheme } from 'vuetify/lib/framework.mjs'
 import { reactive } from 'vue'
 import { useDisplay } from 'vuetify'
 import { provide } from 'vue'
+import { PlayerService } from './scripts/playerService'
+import { Services } from './scripts/services'
+import ActiveUser from './components/ActiveUser.vue'
 
 // Provide the useDisplay to other components so that it can be used in testing.
 const display = reactive(useDisplay())
-provide('display', display)
+provide(Services.Display, display)
+const playerService = new PlayerService()
+playerService.setupPlayerAsync()
+provide(Services.PlayerService, playerService)
 
 const theme = useTheme()
 
